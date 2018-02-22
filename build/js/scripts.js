@@ -1,75 +1,3 @@
-Boot = function (game) {};
-
-Boot.prototype = {
-
-    init: function () {
-        this.world.enableBody = true;
-        this.scale.updateLayout(true);
-    },
-
-    preload: function () {
-        this.load.bitmapFont('eightbitwonder','assets/fonts/eightbitwonder.png', 'assets/fonts/eightbitwonder.fnt');
-        this.load.image('player', 'assets/player.png');
-        this.load.image('wall', 'assets/wall.png');
-        this.load.image('coin', 'assets/coin.png');
-        this.load.image('enemy', 'assets/enemy.png');
-        this.load.image('chest', 'assets/chest.png');
-        this.load.image('door', 'assets/door.png');
-    },
-
-    create: function () {
-        this.physics.startSystem(Phaser.Physics.ARCADE);
-        this.state.start('Preloader');
-    }
-};
-Preloader = function (game) {};
-
-Preloader.prototype = {
-
-    preload: function () {
-        var loadingLabel = this.add.bitmapText(this.world.centerX, this.world.centerY - 20, 'eightbitwonder', 'LOADING', 20);
-        loadingLabel.anchor.set(0.5);
-        this.loadingText = this.add.bitmapText(this.world.centerX, this.world.centerY + 20, 'eightbitwonder', '0', 20);
-        this.loadingText.anchor.set(0.5);
-        this.load.onFileComplete.add(this.fileComplete, this);
-        this.load.path = 'assets/';
-        this.load.images(['coin', 'chest', 'door', 'enemy', 'player', 'wall']);
-    },
-
-    fileComplete: function(progress, cacheKey, success, totalLoaded, totalFiles) {
-        this.loadingText.text = progress;
-    },
-
-    update: function () {
-        this.state.start('MainMenu');
-    },
-
-    shutdown: function () {
-        this.loadingText = null;
-    }
-};
-MainMenu = function (game) {};
-
-MainMenu.prototype = {
-
-    create: function () {
-
-        var titleLabel = this.add.bitmapText(this.world.centerX, 100, 'eightbitwonder', 'BLOCK GAME', 32);
-        titleLabel.anchor.set(0.5);
-
-        var playText = this.add.bitmapText(this.world.centerX, 205, 'eightbitwonder', 'JOGAR', 12);
-        playText.anchor.set(0.5);
-        playText.inputEnabled = true;
-        playText.input.useHandCursor = true;
-        playText.events.onInputDown.add(this.levelSelection, this);
-
-    },
-
-    levelSelection: function () {
-        this.state.start('PlayLevel', true, false, 'level0');
-    }
-
-};
 Finish = function () {};
 
 Finish.prototype = {
@@ -95,10 +23,52 @@ Finish.prototype = {
 
     mainMenu: function () {
         this.state.start('MainMenu');
+    }
+
+};
+Boot = function (game) {};
+
+Boot.prototype = {
+
+    init: function () {
+        this.world.enableBody = true;
+        this.scale.updateLayout(true);
     },
 
-    credits: function () {
-        this.state.start('Credits');
+    preload: function () {
+        this.load.bitmapFont('eightbitwonder','assets/fonts/eightbitwonder.png', 'assets/fonts/eightbitwonder.fnt');
+        this.load.image('player', 'assets/player.png');
+        this.load.image('wall', 'assets/wall.png');
+        this.load.image('coin', 'assets/coin.png');
+        this.load.image('enemy', 'assets/enemy.png');
+        this.load.image('chest', 'assets/chest.png');
+        this.load.image('door', 'assets/door.png');
+    },
+
+    create: function () {
+        this.physics.startSystem(Phaser.Physics.ARCADE);
+        this.state.start('Preloader');
+    }
+};
+MainMenu = function (game) {};
+
+MainMenu.prototype = {
+
+    create: function () {
+
+        var titleLabel = this.add.bitmapText(this.world.centerX, 100, 'eightbitwonder', 'BLOCK GAME', 32);
+        titleLabel.anchor.set(0.5);
+
+        var playText = this.add.bitmapText(this.world.centerX, 205, 'eightbitwonder', 'JOGAR', 12);
+        playText.anchor.set(0.5);
+        playText.inputEnabled = true;
+        playText.input.useHandCursor = true;
+        playText.events.onInputDown.add(this.levelSelection, this);
+
+    },
+
+    levelSelection: function () {
+        this.state.start('PlayLevel', true, false, 'level0');
     }
 
 };
@@ -221,6 +191,32 @@ PlayLevel.prototype = {
         }
     }
 
+};
+Preloader = function (game) {};
+
+Preloader.prototype = {
+
+    preload: function () {
+        var loadingLabel = this.add.bitmapText(this.world.centerX, this.world.centerY - 20, 'eightbitwonder', 'LOADING', 20);
+        loadingLabel.anchor.set(0.5);
+        this.loadingText = this.add.bitmapText(this.world.centerX, this.world.centerY + 20, 'eightbitwonder', '0', 20);
+        this.loadingText.anchor.set(0.5);
+        this.load.onFileComplete.add(this.fileComplete, this);
+        this.load.path = 'assets/';
+        this.load.images(['coin', 'chest', 'door', 'enemy', 'player', 'wall']);
+    },
+
+    fileComplete: function(progress, cacheKey, success, totalLoaded, totalFiles) {
+        this.loadingText.text = progress;
+    },
+
+    update: function () {
+        this.state.start('MainMenu');
+    },
+
+    shutdown: function () {
+        this.loadingText = null;
+    }
 };
 (function(){
 

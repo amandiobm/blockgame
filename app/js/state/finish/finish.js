@@ -23,10 +23,6 @@ Finish.prototype = {
 
     mainMenu: function () {
         this.state.start('MainMenu');
-    },
-
-    credits: function () {
-        this.state.start('Credits');
     }
 
 };
