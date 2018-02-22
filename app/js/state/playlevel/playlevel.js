@@ -75,7 +75,7 @@ PlayLevel.prototype = {
         for (var i = 0; i < loadMap.length; i++) {
             for (var j = 0; j < loadMap[i].length; j++) {
                 if (loadMap[i][j] === 'c') {
-                    var chest = game.add.sprite(30+20*j, 30+20*i, 'chest');
+                    var chest = game.add.sprite(20*j, 20*i, 'chest');
                     this.chest.add(chest);
                     var ty = chest.y;
                     this.add.tween(chest).to({y: ty-10}, Phaser.Timer.SECOND * 1.5, Phaser.Easing.Default).to({y: ty}, Phaser.Timer.SECOND * 1.5, Phaser.Easing.Default).loop().start();
@@ -93,24 +93,24 @@ PlayLevel.prototype = {
             for (var j = 0; j < loadMap[i].length; j++) {
 
                 if (loadMap[i][j] === 'x') {
-                    var wall = game.add.sprite(30+20*j, 30+20*i, 'wall');
+                    var wall = game.add.sprite(20*j, 20*i, 'wall');
                     this.walls.add(wall);
                     wall.body.immovable = true;
                 }
 
                 else if (loadMap[i][j] === 'o') {
-                    var coin = game.add.sprite(30+20*j, 30+20*i, 'coin');
+                    var coin = game.add.sprite(20*j, 20*i, 'coin');
                     this.coins.add(coin);
                     this.countCoin++;
                 }
 
                 else if (loadMap[i][j] === '!') {
-                    var enemy = game.add.sprite(30+20*j, 30+20*i, 'enemy');
+                    var enemy = game.add.sprite(20*j, 20*i, 'enemy');
                     this.enemies.add(enemy);
                 }
 
                 else if (loadMap[i][j] === 'd') {
-                    var door = game.add.sprite(30+20*j, 30+20*i, 'door');
+                    var door = game.add.sprite(20*j, 20*i, 'door');
                     this.door.add(door);
                 }
             }

@@ -1,48 +1,60 @@
 (function(){
 
-    game = new Phaser.Game(500, 300);
+    game = new Phaser.Game(540, 320);
     game.global = {
         levels: 3,
         maps: [
             [
-                'xxxxxxxxxxxxxxxxxxxxxx',
-                '!                    x',
-                '!                    d',
-                '!                    x',
-                '!                    x',
-                '!                    x',
-                '!     c              x',
-                '!                 o  x',
-                '!     x   o          x',
-                '!            x       x',
-                '!     o   !    x     x',
-                'xxxxxxxxxxxxxxxx!!!!!x'
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                '!                         x',
+                '!                         x',
+                '!                         x',
+                '!                         x',
+                '!                         x',
+                '!                         d',
+                '!     o                   d',
+                '!    xxx                  x',
+                '!            o            x',
+                '!     c     xxx           x',
+                '!                   o     x',
+                '!     x   o        xx     x',
+                '!                         x',
+                '!     o   !    x          x',
+                'xxxxxxxxxxxxxxxx!!!!!!!!!!x'
             ], [
-                'xxxxxxxxxxxxxxxxxxxxxx',
-                'd                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                 o  x',
-                'x     x   o    c     !',
-                'x                    !',
-                'x     o   !    x     !',
-                'xxxxxxxxxxxxxxxx!!!!!!'
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'd                         x',
+                'd                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                 o       x',
+                'x     x   o    c          !',
+                'x                         !',
+                'x     o   !    x          !',
+                'xxxxxxxxxxxxxxxx!!!!!!!!!!!'
             ], [
-                'xxxxxxxxxxxxxxxxxxxxxx',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x     c              x',
-                'x                    x',
-                'x     x              x',
-                'x                    x',
-                'x     o     x        x',
-                'xxxxxx!!!xxxxxxxxxxxxx'
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x     c                   x',
+                'x                         x',
+                'x     x                   x',
+                'x                         x',
+                'x     o     x             x',
+                'xxxxxx!!!xxxxxxxxxxxxxxxxxx'
             ]
         ]
     };

@@ -1,3 +1,27 @@
+Boot = function (game) {};
+
+Boot.prototype = {
+
+    init: function () {
+        this.world.enableBody = true;
+        this.scale.updateLayout(true);
+    },
+
+    preload: function () {
+        this.load.bitmapFont('eightbitwonder','assets/fonts/eightbitwonder.png', 'assets/fonts/eightbitwonder.fnt');
+        this.load.image('player', 'assets/player.png');
+        this.load.image('wall', 'assets/wall.png');
+        this.load.image('coin', 'assets/coin.png');
+        this.load.image('enemy', 'assets/enemy.png');
+        this.load.image('chest', 'assets/chest.png');
+        this.load.image('door', 'assets/door.png');
+    },
+
+    create: function () {
+        this.physics.startSystem(Phaser.Physics.ARCADE);
+        this.state.start('Preloader');
+    }
+};
 Finish = function () {};
 
 Finish.prototype = {
@@ -25,30 +49,6 @@ Finish.prototype = {
         this.state.start('MainMenu');
     }
 
-};
-Boot = function (game) {};
-
-Boot.prototype = {
-
-    init: function () {
-        this.world.enableBody = true;
-        this.scale.updateLayout(true);
-    },
-
-    preload: function () {
-        this.load.bitmapFont('eightbitwonder','assets/fonts/eightbitwonder.png', 'assets/fonts/eightbitwonder.fnt');
-        this.load.image('player', 'assets/player.png');
-        this.load.image('wall', 'assets/wall.png');
-        this.load.image('coin', 'assets/coin.png');
-        this.load.image('enemy', 'assets/enemy.png');
-        this.load.image('chest', 'assets/chest.png');
-        this.load.image('door', 'assets/door.png');
-    },
-
-    create: function () {
-        this.physics.startSystem(Phaser.Physics.ARCADE);
-        this.state.start('Preloader');
-    }
 };
 MainMenu = function (game) {};
 
@@ -149,7 +149,7 @@ PlayLevel.prototype = {
         for (var i = 0; i < loadMap.length; i++) {
             for (var j = 0; j < loadMap[i].length; j++) {
                 if (loadMap[i][j] === 'c') {
-                    var chest = game.add.sprite(30+20*j, 30+20*i, 'chest');
+                    var chest = game.add.sprite(20*j, 20*i, 'chest');
                     this.chest.add(chest);
                     var ty = chest.y;
                     this.add.tween(chest).to({y: ty-10}, Phaser.Timer.SECOND * 1.5, Phaser.Easing.Default).to({y: ty}, Phaser.Timer.SECOND * 1.5, Phaser.Easing.Default).loop().start();
@@ -167,24 +167,24 @@ PlayLevel.prototype = {
             for (var j = 0; j < loadMap[i].length; j++) {
 
                 if (loadMap[i][j] === 'x') {
-                    var wall = game.add.sprite(30+20*j, 30+20*i, 'wall');
+                    var wall = game.add.sprite(20*j, 20*i, 'wall');
                     this.walls.add(wall);
                     wall.body.immovable = true;
                 }
 
                 else if (loadMap[i][j] === 'o') {
-                    var coin = game.add.sprite(30+20*j, 30+20*i, 'coin');
+                    var coin = game.add.sprite(20*j, 20*i, 'coin');
                     this.coins.add(coin);
                     this.countCoin++;
                 }
 
                 else if (loadMap[i][j] === '!') {
-                    var enemy = game.add.sprite(30+20*j, 30+20*i, 'enemy');
+                    var enemy = game.add.sprite(20*j, 20*i, 'enemy');
                     this.enemies.add(enemy);
                 }
 
                 else if (loadMap[i][j] === 'd') {
-                    var door = game.add.sprite(30+20*j, 30+20*i, 'door');
+                    var door = game.add.sprite(20*j, 20*i, 'door');
                     this.door.add(door);
                 }
             }
@@ -220,49 +220,61 @@ Preloader.prototype = {
 };
 (function(){
 
-    game = new Phaser.Game(500, 300);
+    game = new Phaser.Game(540, 320);
     game.global = {
         levels: 3,
         maps: [
             [
-                'xxxxxxxxxxxxxxxxxxxxxx',
-                '!                    x',
-                '!                    d',
-                '!                    x',
-                '!                    x',
-                '!                    x',
-                '!     c              x',
-                '!                 o  x',
-                '!     x   o          x',
-                '!            x       x',
-                '!     o   !    x     x',
-                'xxxxxxxxxxxxxxxx!!!!!x'
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                '!                         x',
+                '!                         x',
+                '!                         x',
+                '!                         x',
+                '!                         x',
+                '!                         d',
+                '!     o                   d',
+                '!    xxx                  x',
+                '!            o            x',
+                '!     c     xxx           x',
+                '!                   o     x',
+                '!     x   o        xx     x',
+                '!                         x',
+                '!     o   !    x          x',
+                'xxxxxxxxxxxxxxxx!!!!!!!!!!x'
             ], [
-                'xxxxxxxxxxxxxxxxxxxxxx',
-                'd                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                 o  x',
-                'x     x   o    c     !',
-                'x                    !',
-                'x     o   !    x     !',
-                'xxxxxxxxxxxxxxxx!!!!!!'
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'd                         x',
+                'd                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                 o       x',
+                'x     x   o    c          !',
+                'x                         !',
+                'x     o   !    x          !',
+                'xxxxxxxxxxxxxxxx!!!!!!!!!!!'
             ], [
-                'xxxxxxxxxxxxxxxxxxxxxx',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x                    x',
-                'x     c              x',
-                'x                    x',
-                'x     x              x',
-                'x                    x',
-                'x     o     x        x',
-                'xxxxxx!!!xxxxxxxxxxxxx'
+                'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x                         x',
+                'x     c                   x',
+                'x                         x',
+                'x     x                   x',
+                'x                         x',
+                'x     o     x             x',
+                'xxxxxx!!!xxxxxxxxxxxxxxxxxx'
             ]
         ]
     };
